@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+var subjectObject = {
+  "OS": {
+    "SATA": ["160 GB", "240 GB", "250 GB", "320 GB","350 GB", "500 GB", "512 GB", "1 TB", "2 TB","1 TB+2 TB","2 TB+4 TB","2 TB+5 TB","2 TB+10 TB"],
+    "SSD": ["'128 GB", "256 GB SSD", "512 GB SSD", "1 TB SSD", "2 TB SSD"],
+    "SATA+SSD": ["1 TB+256 SSD", "2 TB+256 SSD"]    
+  
+	}
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+  }
+}
+</script>
+</head>   
+<body>
+
+<h1>Cascading Dropdown Example</h1>
+
+<form name="form1" id="form1" action="/action_page.php">
+Subjects: <select name="subject" id="subject">
+    <option value="OS" selected="selected">Select subject</option>
+  </select>
+  <br><br>
+Topics: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select subject first</option>
+  </select>
+  <br><br>
+<br>
+Chapters: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select topic first</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">  
+</form>
+
+</body>
+</html>

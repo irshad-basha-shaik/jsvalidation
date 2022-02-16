@@ -8,7 +8,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
-	function GEEKFORGEEKS() {		
+	function GEEKFORGEEKS() {
+		
 		var email = document.forms["myForm"]["EMail"];
 		var name = document.forms["myForm"]["Name"];
 		var phone = document.forms["myForm"]["Telephone"];
@@ -16,16 +17,13 @@
 		var password = document.forms["myForm"]["Password"];
 		var address = document.forms["myForm"]["Address"];
 		var dob = document.forms["myForm"]["dob"];
-		tabs = ["#tab1","#tab2","#tab3"]
-		v = ["email","name","phone","age","password","address","dob"]
-		for (i = 0;i<tabs.length;i++) {
-			for (j = 0; j<v.length;j++) {
-				if (v[j].value == "") {
-					window.alert("Please enter a valid e-mail address.");
-					email.focus();
-					return false;
-				}
-			}
+
+		
+		if (email.value == "") {
+			window.alert(
+			"Please enter a valid e-mail address.");
+			email.focus();
+			return false;
 		}
 		{
 

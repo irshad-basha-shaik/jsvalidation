@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+var subjectObject = {
+  "OS": {
+    "Win.XP": ["Win.XP 2000", "Win.XP 2003","Windows Xp Pro"],
+    "Win.7": ["Win-7 Pro.32 Bit", "Win-7 Pro.64 Bit"],
+    "Win.8": ["Win-8.1 Pro.32 Bit", "Win-8.1 Pro.64 Bit"],
+    "Win.10": ["Win-10 Home Single Lan", "Win-10 Pro 64 bit"],
+    "Win.11": ["Win-10 Pro 64 bit"],
+    "Ser.2012": ["Win-Server-2012"],
+     "Ser.2016": ["Win-Server-2016"],
+    "Ser.2019": ["Win-Server-2019"]
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+</head>   
+<body>
+
+<h1>Cascading Dropdown Example</h1>
+
+<form name="form1" id="form1" action="/action_page.php">
+Subjects: <select name="subject" id="subject">
+    <option value="" selected="selected">Select subject</option>
+  </select>
+  <br><br>
+Topics: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select subject first</option>
+  </select>
+  <br><br>
+Chapters: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select topic first</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">  
+</form>
+
+</body>
+</html>
